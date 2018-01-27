@@ -1,0 +1,6 @@
+C:\Projects\TreePinBallApplication\TreePinBallApplication\TreePinBallApplication\bin\Debug\TreePinBallApplication.exe.config
+C:\Projects\TreePinBallApplication\TreePinBallApplication\TreePinBallApplication\bin\Debug\TreePinBallApplication.exe
+C:\Projects\TreePinBallApplication\TreePinBallApplication\TreePinBallApplication\bin\Debug\TreePinBallApplication.pdb
+C:\Projects\TreePinBallApplication\TreePinBallApplication\TreePinBallApplication\obj\Debug\TreePinBallApplication.csprojResolveAssemblyReference.cache
+C:\Projects\TreePinBallApplication\TreePinBallApplication\TreePinBallApplication\obj\Debug\TreePinBallApplication.exe
+C:\Projects\TreePinBallApplication\TreePinBallApplication\TreePinBallApplication\obj\Debug\TreePinBallApplication.pdb
