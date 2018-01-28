@@ -18,8 +18,23 @@ namespace TreePinBallApplication
         #region Members
 
         public static int StaticGateID;
+        public static int StaticAmountOfTimeRootGateOpenedLeft;
+        private static int[]  staicStatisticeContainerCounterArry;
+        public static int[] StaicStatisticeContainerCounterArry
+        {
+            get
+            {
+                if (staicStatisticeContainerCounterArry == null)
+                {
+                    staicStatisticeContainerCounterArry = new int[16];
+                }
 
-        private string gateID;
+                return staicStatisticeContainerCounterArry;
+            }
+        }
+
+        private string gateAlphabeticalID;
+        private int gateID;
         private int gateLevel;
         private Gate leftGate;
         private Gate rightGate;
@@ -29,13 +44,20 @@ namespace TreePinBallApplication
 
 
         #region Public Functions
-        public Gate(bool isRoot = false)
+        public Gate(bool isRoot = false, bool withStatistics = false)
         {
             if (isRoot)
                 Gate.StaticGateID = 0;
+                
 
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             openDirection = ((rand.Next() % 2) == 0) ? Direction.Left : Direction.Right;
+
+            if (withStatistics)
+            {
+                if (openDirection == Direction.Left)
+                    StaticAmountOfTimeRootGateOpenedLeft++;
+            }
         }
 
         public void BuildTree(int level)
@@ -50,23 +72,28 @@ namespace TreePinBallApplication
             }
             else
             {
-                gateID = GateIndex2AlphabeticalString(++StaticGateID, true);
+                gateID = StaticGateID;
+                gateAlphabeticalID  = GateIndex2AlphabeticalString(++StaticGateID, true);
             }
         }
 
-        public string ReciveBall()
+        public string ReciveBall(bool withStatistics)
         {
             string gatesWithBalls;
             if (gateLevel == 0)
             {
-                gatesWithBalls = gateID + ",";
+                gatesWithBalls = gateAlphabeticalID + ",";
+                if (withStatistics)
+                {
+                    StaicStatisticeContainerCounterArry[gateID]++;
+                }
             }
             else
             {
                 if (openDirection == Direction.Left)
-                    gatesWithBalls = leftGate.ReciveBall();
+                    gatesWithBalls = leftGate.ReciveBall(withStatistics);
                 else
-                    gatesWithBalls = rightGate.ReciveBall();
+                    gatesWithBalls = rightGate.ReciveBall(withStatistics);
             }
 
             ChangeGateDirection();
